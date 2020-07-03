@@ -1,6 +1,5 @@
 <script>
   import store, { init } from "./store";
-  import Input from "./components/input.svelte";
   import Grid from "./components/Grid.svelte";
 </script>
 

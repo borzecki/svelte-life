@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "../../App.svelte",
+    "../../Grid.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n  import store, { init } from \"./store\";\n  import Grid from \"./components/Grid.svelte\";\n</script>\n\n<style>\n  main {\n    text-align: center;\n    padding: 1em;\n    max-width: 240px;\n    margin: 0 auto;\n  }\n\n  h1 {\n    color: #ff3e00;\n    text-transform: uppercase;\n    font-size: 4em;\n    font-weight: 100;\n  }\n\n  @media (min-width: 640px) {\n    main {\n      max-width: none;\n    }\n  }\n</style>\n\n<main>\n  <h1>game of life</h1>\n  <input bind:value={$store.rows} type=\"number\" />\n  <input bind:value={$store.cols} type=\"number\" />\n  <button on:click={init}>randomize</button>\n  <Grid />\n</main>\n",
+    "<script>\n  import store, { active, toggle } from \"../store\";\n</script>\n\n<style>\n  .grid {\n    display: grid;\n    grid-template-columns: repeat(var(--columns), 1fr);\n    margin: 5%;\n  }\n\n  .cell {\n    border: 1px solid #0003;\n    margin: 0.5px;\n    cursor: pointer;\n\n    display: grid;\n    place-items: center;\n  }\n\n  .cell::before {\n    content: \"\";\n    display: block;\n    padding-bottom: 100%;\n    grid-area: 1 / 1 / 2 / 2;\n  }\n\n  .active {\n    background: #ee6c4d;\n  }\n</style>\n\n<div class=\"grid\" style=\"--columns:{$store.cols}\">\n  {#each $active as value, i}\n    <div on:click={() => toggle(i)} class:active={value} class=\"cell\" />\n  {/each}\n</div>\n"
+  ],
+  "names": [],
+  "mappings": "AAME,IAAI,eAAC,CAAC,AACJ,UAAU,CAAE,MAAM,CAClB,OAAO,CAAE,GAAG,CACZ,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,CAAC,CAAC,IAAI,AAChB,CAAC,AAED,EAAE,eAAC,CAAC,AACF,KAAK,CAAE,OAAO,CACd,cAAc,CAAE,SAAS,CACzB,SAAS,CAAE,GAAG,CACd,WAAW,CAAE,GAAG,AAClB,CAAC,AAED,MAAM,AAAC,YAAY,KAAK,CAAC,AAAC,CAAC,AACzB,IAAI,eAAC,CAAC,AACJ,SAAS,CAAE,IAAI,AACjB,CAAC,AACH,CAAC;ACnBD,KAAK,cAAC,CAAC,AACL,OAAO,CAAE,IAAI,CACb,qBAAqB,CAAE,OAAO,IAAI,SAAS,CAAC,CAAC,CAAC,GAAG,CAAC,CAClD,MAAM,CAAE,EAAE,AACZ,CAAC,AAED,KAAK,cAAC,CAAC,AACL,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,KAAK,CACvB,MAAM,CAAE,KAAK,CACb,MAAM,CAAE,OAAO,CAEf,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,MAAM,AACrB,CAAC,AAED,mBAAK,QAAQ,AAAC,CAAC,AACb,OAAO,CAAE,EAAE,CACX,OAAO,CAAE,KAAK,CACd,cAAc,CAAE,IAAI,CACpB,SAAS,CAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,AAC1B,CAAC,AAED,OAAO,cAAC,CAAC,AACP,UAAU,CAAE,OAAO,AACrB,CAAC"
+}
